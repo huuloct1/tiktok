@@ -1,5 +1,4 @@
-import { Children } from 'react'
-import Header from './Header'
+import Header from '../components/Header'
 
 const HeaderOnly = ({ children }) => {
   return (
