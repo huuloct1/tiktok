@@ -151,9 +151,14 @@
 
 }
 
-.custom-login {
-   color: red;
+.action {
+   display: flex;
+   align-items: center;
 }
 
-
-
+.more-btn {
+   font-size: 2.0rem;
+   margin-left: 20px;
+   background-color: transparent;
+   padding: 8px;
+}
