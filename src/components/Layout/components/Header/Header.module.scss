@@ -156,9 +156,25 @@
    align-items: center;
 }
 
+.action-btn {
+   color: var(--text-color);
+   font-size: 2.2rem;
+   padding: 0 12px;
+   background-color: transparent;
+}
+
 .more-btn {
    font-size: 2.0rem;
    margin-left: 20px;
    background-color: transparent;
    padding: 8px;
+   cursor: pointer;
+}
+
+.user-avatar {
+   width: 32px;
+   height: 32px;
+   object-fit: cover;
+   border-radius: 50%;
+   margin-left: 12px;
 }

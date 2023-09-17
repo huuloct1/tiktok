@@ -1,5 +1,6 @@
 .menu-list {
    width: 100%;
+   min-width: 208px;
 
    .menu-item {
       margin-left: 0;
@@ -12,13 +13,42 @@
 }
 
 .menu-item {
+   color: var(--text-color);
    font-weight: 400;
    width: 100%;
+   line-height: 1.8rem;
    border-radius: 0;
    padding: 11px 16px;
    justify-content: flex-start;
+
+   &.separate {
+      border-top: 1px solid rgba(22, 24, 35, 0.12);
+   }
 
    &:hover {
       background-color: rgba(22, 24, 35, 0.03);
    }
 }
+
+//Header
+.header {
+   position: relative;
+   height: 50px;
+   width: 100%;
+}
+
+.back-btn {
+   width: 50px;
+   height: 100%;
+   background-color: transparent;
+   cursor: pointer;
+}
+
+.header-title {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+
