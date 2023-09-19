@@ -161,6 +161,27 @@
    font-size: 2.2rem;
    padding: 0 12px;
    background-color: transparent;
+   min-height: 43px;
+   min-width: 60px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   position: relative;
+}
+
+.sup-badge {
+   position: absolute;
+   font-size: 1.4rem;
+   top: -4%;
+   right: 2%;
+   color: var(--white);
+   background-color: var(--primary);
+   display: block;
+   width: 30px;
+   height: 20px;
+   line-height: 20px;
+   border-radius: 10px;
 }
 
 .more-btn {
