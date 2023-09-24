@@ -36,6 +36,7 @@ const Menu = ({ children, list = [] }) => {
   }
   return (
     <HeadlessTippy
+      hideOnClick={false}
       interactive
       delay={[0, 500]}
       offset={[12, 8]}

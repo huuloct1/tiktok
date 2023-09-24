@@ -12,9 +12,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
+import { Link } from 'react-router-dom'
 
 import classNames from 'classnames/bind'
 import styles from './Header.module.scss'
+import routesConfig from '~/configs/routes'
 import { images } from '~/assets/images'
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
@@ -84,9 +86,9 @@ const Header = () => {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('container')}>
-        <div className={cx('logo')}>
+        <Link to={routesConfig.home} className={cx('logo')}>
           <img src={images.logo} alt='tiktok' />
-        </div>
+        </Link>
 
         <Search />
 
