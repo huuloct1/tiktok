@@ -63,63 +63,66 @@ const Search = () => {
   console.log('running')
 
   return (
-    <HeadlessTippy
-      interactive
-      visible={showPopper && searchResult.length > 0}
-      render={(attrs) => (
-        <div className={cx('search-result')} tabIndex='-1' {...attrs}>
-          <PopperWrapper>
-            <div className={cx('search-result-video')}>
-              <span className={cx('search-result-video-item')}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                video 1
-              </span>
-              <span className={cx('search-result-video-item')}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                video 2
-              </span>
-              <span className={cx('search-result-video-item')}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                video 3
-              </span>
-            </div>
-            <span className={cx('search-result-account-title')}>Accounts</span>
-            <div className={cx('search-result-account')}>
-              <div className={cx('search-result-account-item')}>
-                {searchResult.map((result) => (
-                  <AccountItem key={result.id} data={result} />
-                ))}
+    //Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+    <div>
+      <HeadlessTippy
+        interactive
+        visible={showPopper && searchResult.length > 0}
+        render={(attrs) => (
+          <div className={cx('search-result')} tabIndex='-1' {...attrs}>
+            <PopperWrapper>
+              <div className={cx('search-result-video')}>
+                <span className={cx('search-result-video-item')}>
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  video 1
+                </span>
+                <span className={cx('search-result-video-item')}>
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  video 2
+                </span>
+                <span className={cx('search-result-video-item')}>
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  video 3
+                </span>
               </div>
-            </div>
-          </PopperWrapper>
-        </div>
-      )}
-      onClickOutside={handleHidePopper}
-    >
-      <div className={cx('search')}>
-        <input
-          ref={inputRef}
-          value={searchValue}
-          placeholder='Search accounts and videos'
-          spellCheck={false}
-          onChange={handleChange}
-          onFocus={handleShowPopper}
-        />
-        {!!searchValue && !loading && (
-          <button className={cx('clear-btn')} onClick={handleClear}>
-            <FontAwesomeIcon icon={faCircleXmark} />
+              <span className={cx('search-result-account-title')}>Accounts</span>
+              <div className={cx('search-result-account')}>
+                <div className={cx('search-result-account-item')}>
+                  {searchResult.map((result) => (
+                    <AccountItem key={result.id} data={result} />
+                  ))}
+                </div>
+              </div>
+            </PopperWrapper>
+          </div>
+        )}
+        onClickOutside={handleHidePopper}
+      >
+        <div className={cx('search')}>
+          <input
+            ref={inputRef}
+            value={searchValue}
+            placeholder='Search accounts and videos'
+            spellCheck={false}
+            onChange={handleChange}
+            onFocus={handleShowPopper}
+          />
+          {!!searchValue && !loading && (
+            <button className={cx('clear-btn')} onClick={handleClear}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
+          {loading && (
+            <span className={cx('loading')}>
+              <FontAwesomeIcon icon={faSpinner} />
+            </span>
+          )}
+          <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
-        )}
-        {loading && (
-          <span className={cx('loading')}>
-            <FontAwesomeIcon icon={faSpinner} />
-          </span>
-        )}
-        <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
-      </div>
-    </HeadlessTippy>
+        </div>
+      </HeadlessTippy>
+    </div>
   )
 }
 

@@ -1,6 +1,5 @@
 .menu-list {
-   width: 100%;
-   min-width: 208px;
+   width: 208px;
 
    .menu-item {
       margin-left: 0;
@@ -10,6 +9,10 @@
 .menu-popper {
    padding-right: 0;
    padding-left: 0;
+}
+
+.menu-body {
+   overflow-y: overlay;
 }
 
 .menu-item {
@@ -35,6 +38,7 @@
    position: relative;
    height: 50px;
    width: 100%;
+   flex-shrink: 0;
 }
 
 .back-btn {
@@ -49,6 +53,7 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   pointer-events: none;
 }
 
 
