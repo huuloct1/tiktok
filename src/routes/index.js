@@ -16,9 +16,9 @@ export const publicRoutes = [
     component: Following,
   },
   {
-    path: '/profile',
+    path: '/:nickname',
     component: Profile,
-    layout: null,
+    layout: HeaderOnly,
   },
   {
     path: '/upload',

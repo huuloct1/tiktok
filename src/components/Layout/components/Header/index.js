@@ -78,8 +78,6 @@ const userMenu = [
   },
 ]
 
-console.log('running')
-
 const Header = () => {
   const currentUser = true
 
@@ -95,33 +93,18 @@ const Header = () => {
         <div className={cx('action')}>
           {currentUser ? (
             <>
-              <Tippy
-                delay={[0, 200]}
-                offset={[0, 6]}
-                content='Upload Video'
-                placement='bottom'
-              >
+              <Tippy delay={[0, 200]} offset={[0, 6]} content='Upload Video' placement='bottom'>
                 <button className={cx('action-btn')}>
                   <FontAwesomeIcon icon={faCloudArrowUp} />
                 </button>
               </Tippy>
-              <Tippy
-                delay={[0, 200]}
-                offset={[0, 6]}
-                content='Messages'
-                placement='bottom'
-              >
+              <Tippy delay={[0, 200]} offset={[0, 6]} content='Messages' placement='bottom'>
                 <button className={cx('action-btn')}>
                   <MessagesIcon />
                   <sup className={cx('sup-badge')}>8</sup>
                 </button>
               </Tippy>
-              <Tippy
-                delay={[0, 200]}
-                offset={[0, 6]}
-                content='Inbox'
-                placement='bottom'
-              >
+              <Tippy delay={[0, 200]} offset={[0, 6]} content='Inbox' placement='bottom'>
                 <button className={cx('action-btn')}>
                   <InboxIcon />
                   <sup className={cx('sup-badge')}>14</sup>

@@ -1,15 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faCircleXmark,
-  faMagnifyingGlass,
-  faSpinner,
-} from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import HeadlessTippy from '@tippyjs/react/headless'
+
+import * as searchServices from '~/apiServices/searchServices'
 import { Wrapper as PopperWrapper } from '~/components/Popper'
 import classNames from 'classnames/bind'
 import styles from './Search.module.scss'
 import AccountItem from '~/components/AccountItem'
+import { useDebounce } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
@@ -17,14 +16,31 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [showPopper, setShowPopper] = useState(true)
+  const [loading, setLoading] = useState(false)
+
+  const debounced = useDebounce(searchValue, 500)
 
   const inputRef = useRef()
 
   useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([1, 1, 1, 1])
-    }, 0)
-  }, [])
+    //reset searchResult once searchValue no exist value
+    //searValue empty => length=0 => Check and ignore call api
+    if (!debounced.trim()) {
+      setSearchResult([])
+      return
+    }
+
+    const fetchApi = async () => {
+      setLoading(true)
+
+      const result = await searchServices.searchUser(debounced)
+      setSearchResult(result)
+
+      setLoading(false)
+    }
+
+    fetchApi()
+  }, [debounced])
 
   const handleClear = () => {
     setSearchValue('')
@@ -35,6 +51,8 @@ const Search = () => {
   // Hide/Show Popper
   const handleShowPopper = () => setShowPopper(true)
   const handleHidePopper = () => setShowPopper(false)
+
+  console.log('running')
 
   return (
     <HeadlessTippy
@@ -60,28 +78,9 @@ const Search = () => {
             <span className={cx('search-result-account-title')}>Accounts</span>
             <div className={cx('search-result-account')}>
               <div className={cx('search-result-account-item')}>
-                <AccountItem
-                  img='https://p9-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/751d9281c7f18830a694812b0643f720.jpeg?x-expires=1693897200&x-signature=1V1Ioda1Fa25zA1SlxSZ4XoukDY%3D'
-                  name='hoa hoa'
-                  bio='this is a bio of hoa hoa'
-                />
-                <AccountItem
-                  img='https://p9-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/751d9281c7f18830a694812b0643f720.jpeg?x-expires=1693897200&x-signature=1V1Ioda1Fa25zA1SlxSZ4XoukDY%3D'
-                  name='hoa hoa'
-                  bio='this is a bio of hoa hoa'
-                  check
-                />
-                <AccountItem
-                  img='https://p9-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/751d9281c7f18830a694812b0643f720.jpeg?x-expires=1693897200&x-signature=1V1Ioda1Fa25zA1SlxSZ4XoukDY%3D'
-                  name='hoa hoa'
-                  bio='this is a bio of hoa hoa'
-                />
-                <AccountItem
-                  img='https://p9-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/751d9281c7f18830a694812b0643f720.jpeg?x-expires=1693897200&x-signature=1V1Ioda1Fa25zA1SlxSZ4XoukDY%3D'
-                  name='hoa hoa'
-                  bio='this is a bio of hoa hoa'
-                  check
-                />
+                {searchResult.map((result) => (
+                  <AccountItem key={result.id} data={result} />
+                ))}
               </div>
             </div>
           </PopperWrapper>
@@ -98,12 +97,16 @@ const Search = () => {
           onChange={(e) => setSearchValue(e.target.value)}
           onFocus={handleShowPopper}
         />
-        <button className={cx('clear-btn')} onClick={handleClear}>
-          <FontAwesomeIcon icon={faCircleXmark} />
-        </button>
-        <span className={cx('loading')}>
-          <FontAwesomeIcon icon={faSpinner} />
-        </span>
+        {!!searchValue && !loading && (
+          <button className={cx('clear-btn')} onClick={handleClear}>
+            <FontAwesomeIcon icon={faCircleXmark} />
+          </button>
+        )}
+        {loading && (
+          <span className={cx('loading')}>
+            <FontAwesomeIcon icon={faSpinner} />
+          </span>
+        )}
         <button className={cx('search-btn')}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
