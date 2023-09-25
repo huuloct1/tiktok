@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import HeadlessTippy from '@tippyjs/react/headless'
 
-import * as searchServices from '~/apiServices/searchServices'
-import { Wrapper as PopperWrapper } from '~/components/Popper'
+import * as searchService from '~/services/search'
+import Popper from '~/components/Popper'
 import classNames from 'classnames/bind'
 import styles from './Search.module.scss'
 import AccountItem from '~/components/AccountItem'
@@ -33,7 +33,7 @@ const Search = () => {
     const fetchApi = async () => {
       setLoading(true)
 
-      const result = await searchServices.searchUser(debounced)
+      const result = await searchService.search(debounced)
       setSearchResult(result)
 
       setLoading(false)
@@ -60,8 +60,6 @@ const Search = () => {
   const handleShowPopper = () => setShowPopper(true)
   const handleHidePopper = () => setShowPopper(false)
 
-  console.log('running')
-
   return (
     //Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
     <div>
@@ -70,7 +68,7 @@ const Search = () => {
         visible={showPopper && searchResult.length > 0}
         render={(attrs) => (
           <div className={cx('search-result')} tabIndex='-1' {...attrs}>
-            <PopperWrapper>
+            <Popper>
               <div className={cx('search-result-video')}>
                 <span className={cx('search-result-video-item')}>
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -93,7 +91,7 @@ const Search = () => {
                   ))}
                 </div>
               </div>
-            </PopperWrapper>
+            </Popper>
           </div>
         )}
         onClickOutside={handleHidePopper}

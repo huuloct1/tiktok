@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 
 import classNames from 'classnames/bind'
 import styles from './Header.module.scss'
-import routesConfig from '~/configs/routes'
+import configs from '~/configs'
 import { images } from '~/assets/images'
 import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
@@ -166,7 +166,7 @@ const Header = () => {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('container')}>
-        <Link to={routesConfig.home} className={cx('logo')}>
+        <Link to={configs.routes.home} className={cx('logo')}>
           <img src={images.logo} alt='tiktok' />
         </Link>
 
