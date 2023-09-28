@@ -41,86 +41,6 @@ const MENU_LIST = [
           code: 'vi',
           title: 'Tiếng Việt',
         },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
       ],
     },
   },
@@ -161,7 +81,7 @@ const userMenu = [
 ]
 
 const Header = () => {
-  const currentUser = true
+  const currentUser = false
 
   return (
     <header className={cx('wrapper')}>
@@ -196,7 +116,9 @@ const Header = () => {
           ) : (
             <>
               <Button text>Upload</Button>
-              <Button primary>Log in</Button>
+              <Button primary to='/'>
+                Log in
+              </Button>
             </>
           )}
           <Menu list={currentUser ? userMenu : MENU_LIST}>
