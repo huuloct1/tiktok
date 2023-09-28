@@ -15,17 +15,18 @@ const cx = classNames.bind(styles)
 const Search = () => {
   const [searchValue, setSearchValue] = useState('')
   const [searchResult, setSearchResult] = useState([])
-  const [showPopper, setShowPopper] = useState(true)
+  const [showPopper, setShowPopper] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const debounced = useDebounce(searchValue, 500)
+  const debouncedSearchValue = useDebounce(searchValue, 500)
 
   const inputRef = useRef()
 
+  //fetch API
   useEffect(() => {
     //reset searchResult once searchValue no exist value
     //searValue empty => length=0 => Check and ignore call api
-    if (!debounced.trim()) {
+    if (!debouncedSearchValue.trim()) {
       setSearchResult([])
       return
     }
@@ -33,15 +34,46 @@ const Search = () => {
     const fetchApi = async () => {
       setLoading(true)
 
-      const result = await searchService.search(debounced)
+      const result = await searchService.search(debouncedSearchValue)
       setSearchResult(result)
 
       setLoading(false)
     }
 
     fetchApi()
-  }, [debounced])
+  }, [debouncedSearchValue])
 
+  //render search result
+  const renderResult = (attrs) => (
+    <div className={cx('search-result')} tabIndex='-1' {...attrs}>
+      <Popper>
+        <div className={cx('search-result-video')}>
+          <span className={cx('search-result-video-item')}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            video 1
+          </span>
+          <span className={cx('search-result-video-item')}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            video 2
+          </span>
+          <span className={cx('search-result-video-item')}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            video 3
+          </span>
+        </div>
+        <span className={cx('search-result-account-title')}>Accounts</span>
+        <div className={cx('search-result-account')}>
+          <div className={cx('search-result-account-item')}>
+            {searchResult.map((result) => (
+              <AccountItem key={result.id} data={result} />
+            ))}
+          </div>
+        </div>
+      </Popper>
+    </div>
+  )
+
+  //handle change search value
   const handleChange = (e) => {
     const searchInput = e.target.value
 
@@ -50,6 +82,7 @@ const Search = () => {
     }
   }
 
+  //handle clear btn
   const handleClear = () => {
     setSearchValue('')
     setSearchResult([])
@@ -66,34 +99,7 @@ const Search = () => {
       <HeadlessTippy
         interactive
         visible={showPopper && searchResult.length > 0}
-        render={(attrs) => (
-          <div className={cx('search-result')} tabIndex='-1' {...attrs}>
-            <Popper>
-              <div className={cx('search-result-video')}>
-                <span className={cx('search-result-video-item')}>
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
-                  video 1
-                </span>
-                <span className={cx('search-result-video-item')}>
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
-                  video 2
-                </span>
-                <span className={cx('search-result-video-item')}>
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
-                  video 3
-                </span>
-              </div>
-              <span className={cx('search-result-account-title')}>Accounts</span>
-              <div className={cx('search-result-account')}>
-                <div className={cx('search-result-account-item')}>
-                  {searchResult.map((result) => (
-                    <AccountItem key={result.id} data={result} />
-                  ))}
-                </div>
-              </div>
-            </Popper>
-          </div>
-        )}
+        render={renderResult}
         onClickOutside={handleHidePopper}
       >
         <div className={cx('search')}>

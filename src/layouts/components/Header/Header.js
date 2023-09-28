@@ -130,11 +130,9 @@ const Header = () => {
                 fallback='https://i.ytimg.com/an/NSCWwgW-rwmoE3Yc4WmJhw/featured_channel.jpg?v=63a984d2'
               />
             ) : (
-              <>
-                <button className={cx('more-btn')}>
-                  <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
-              </>
+              <button className={cx('more-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
             )}
           </Menu>
         </div>
