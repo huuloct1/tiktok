@@ -1,0 +1,45 @@
+.wrapper {
+  position: relative;
+  font-size: 1.3rem;
+  color: var(--gray);
+  padding: 20px 0;
+
+  &::before {
+    content: '';
+    border-top: 1px solid #eee;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--black);
+  background-image: url('https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok/webapp/main/webapp-desktop/045b2fc7c278b9a30dd0.png');
+  background-size: cover;
+  width: 180px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 8px;
+  margin-bottom: 16px;
+
+  .icon {
+    padding-right: 8px;
+  }
+}
+
+.paragraph {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 12px;
+
+  span {
+    padding-right: 6px;
+  }
+}

@@ -1,0 +1,57 @@
+.wrapper {
+  padding: 4px;
+  width: 282px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.follow-btn {
+  height: 36px;
+}
+
+.name {
+  padding: 4px 0;
+}
+
+.user-name {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.full-name {
+  font-size: 1.4rem;
+  color: var(--text-color);
+}
+
+.analytics {
+  display: flex;
+  flex-direction: row;
+}
+
+.followers {
+  
+}
+
+.likes {
+  margin-left: 16px;
+}
+
+.value {
+  font-weight: bold;
+}
+
+.label {
+  padding-left: 6px;
+  color: var(--gray);
+}

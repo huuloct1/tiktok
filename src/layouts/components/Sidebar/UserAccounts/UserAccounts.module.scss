@@ -1,0 +1,68 @@
+.wrapper {
+  padding-bottom: 16px;
+}
+
+.label {
+  display: block;
+  width: 100%;
+  position: relative;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 16px 0 8px 0;
+  color: var(--gray);
+
+  &::before {
+    content: '';
+    border-top: 1px solid #eee;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+  }
+}
+
+//UserAccountItem
+.account-item {
+  padding: 4px 4px 4px 0;
+  display: flex;
+  align-items: center;
+
+  img {
+     width: 32px;
+     height: 32px;
+     border-radius: 50%;
+     object-fit: cover;
+  }
+}
+
+.account-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 12px;
+}
+
+.account-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  svg {
+     color: #20d5ec;
+     margin-left: 6px;
+  }
+}
+
+.account-full-name {
+  color: var(--gray);
+  font-size: 1.2rem;
+}
+
+.more-btn {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 4px;
+  margin: 4px 0 -4px -4px;
+  cursor: pointer;
+  width: fit-content;
+}
