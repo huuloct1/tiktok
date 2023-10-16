@@ -26,8 +26,6 @@ const Sidebar = () => {
     fetchSuggestedApi()
   }, [])
 
-  console.log(suggestedAccounts)
-
   return (
     <aside className={cx('wrapper')}>
       <Menu>

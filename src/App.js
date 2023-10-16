@@ -4,7 +4,12 @@ import { publicRoutes } from './routes'
 import DefaultLayout, { HeaderOnly } from './layouts'
 import './App.css'
 
+import { useSelector } from 'react-redux'
+
 function App() {
+  const userState = useSelector((state) => state.user)
+  console.log(userState)
+
   return (
     <Router>
       <div className='App'>

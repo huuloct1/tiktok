@@ -1,3 +1,5 @@
+import React from 'react'
+import ReactPlayer from 'react-player/lazy'
 import classNames from 'classnames/bind'
 import styles from './Video.module.scss'
 import Button from '../Button'
@@ -11,53 +13,61 @@ const Video = ({ data }) => {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('avatar')}>
-        <Image src='https://static2.yan.vn/YanNews/202109/202109270129494778-4d2769b6-8466-4ec9-8fd8-aff6e3bbdb88.jpeg' />
+        <Image src={data.user.avatar} />
       </div>
 
       <div className={cx('container')}>
         <div className={cx('container-2')}>
           <div className={cx('header')}>
             <div className={cx('name')}>
-              <div className={cx('nick-name')}>duchoa1509</div>
-              <div className={cx('full-name')}>Đức Hòa</div>
+              <div className={cx('nick-name')}>{data.user.nickname}</div>
+              <div className={cx('full-name')}>
+                {data.user.first_name + ' ' + data.user.last_name}
+              </div>
             </div>
-            <div className={cx('text')}>
-              minh lãy com cty. mang vê làm com chiên cá man#duchoa1509 #AnCungTikTok
-              #navancungtiktok2023 #kechuyen...
-            </div>
+            <div className={cx('text')}>{data.description}</div>
             <div className={cx('sound')}>
               <FontAwesomeIcon icon={faMusic} />
-              nhạc nền - Đức Hòa
+              {data.music}
             </div>
           </div>
           <span className={cx('more')}>...more</span>
         </div>
         <div className={cx('content')}>
-          <div className={cx('video')}></div>
+          <div className={cx('video')}>
+            <ReactPlayer
+              width={300}
+              height={540}
+              controls={true}
+              playing={false}
+              loop={true}
+              url={data.file_url}
+            />
+          </div>
           <div className={cx('actions')}>
             <div className={cx('action')}>
               <div className={cx('icon-wrapper')}>
                 <FontAwesomeIcon icon={faHeart} />
               </div>
-              <span>583.3K</span>
+              <span>{data.likes_count}</span>
             </div>
             <div className={cx('action')}>
               <div className={cx('icon-wrapper')}>
                 <FontAwesomeIcon icon={faMessage} />
               </div>
-              <span>1883</span>
+              <span>{data.comments_count}</span>
             </div>
             <div className={cx('action')}>
               <div className={cx('icon-wrapper')}>
                 <FontAwesomeIcon icon={faBookmark} />
               </div>
-              <span>10.3K</span>
+              <span>{data.shares_count}</span>
             </div>
             <div className={cx('action')}>
               <div className={cx('icon-wrapper')}>
                 <FontAwesomeIcon icon={faShare} />
               </div>
-              <span>7003</span>
+              <span>{data.shares_count}</span>
             </div>
           </div>
         </div>

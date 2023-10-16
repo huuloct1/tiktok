@@ -18,6 +18,14 @@ export const publicRoutes = [
     component: Following,
   },
   {
+    path: configs.routes.explore,
+    component: Home,
+  },
+  {
+    path: configs.routes.live,
+    component: Home,
+  },
+  {
     path: configs.routes.profile,
     component: Profile,
   },

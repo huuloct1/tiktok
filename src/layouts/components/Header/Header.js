@@ -22,7 +22,7 @@ import Button from '~/components/Button'
 import Menu from '~/components/Popper/Menu'
 import { InboxIcon, MessagesIcon } from '~/components/Icons'
 import Image from '~/components/Image'
-import Search from '../Search'
+import Search from './Search'
 
 const cx = classNames.bind(styles)
 
@@ -121,7 +121,7 @@ const Header = () => {
               </Button>
             </>
           )}
-          <Menu list={currentUser ? userMenu : MENU_LIST}>
+          <Menu list={currentUser ? userMenu : MENU_LIST} delay={[0, 500]}>
             {currentUser ? (
               <Image
                 className={cx('user-avatar')}

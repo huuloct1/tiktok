@@ -1,0 +1,123 @@
+.wrapper {
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+}
+
+.info {
+  
+}
+
+.info-main {
+  display: flex;
+  padding: 8px 0;
+
+  img {
+    padding: 8px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 360px;
+  padding-left: 16px;
+
+  .nick-name {
+    font-size: 2.8rem;
+    line-height: 28px;
+    font-weight: 700;
+  }
+  
+  .full-name {
+    line-height: 20px;
+    padding-bottom: 12px;
+  }
+
+  button {
+    width: 200px;
+    font-weight: 500;
+    height: 32px;
+  }
+}
+
+.info-analytic {
+  display: flex;
+  padding: 12px 0;
+}
+
+.analytic-item {
+  padding-right: 12px;
+}
+
+.analytic-item--count {
+  padding-right: 4px;
+  font-weight: 600;
+}
+
+.analytic-item--label {
+  font-size: 1.4rem;
+  color: var(--gray);
+}
+
+.info-more {
+  font-size: 1.4rem;
+  color: var(--dark-gray);
+}
+
+.info-more--content {
+  
+}
+
+.info-more--link {
+  padding: 8px 0;
+  font-weight: 600;
+}
+
+.account-actions {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 76px;
+  margin-top: 24px;
+}
+
+.account-actions--share {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+}
+
+.account-actions--more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2rem;
+  height: 40px;
+  width: 32px;
+}
+
+.container {
+  padding: 12px 0;
+}
+
+.option {
+
+}
+
+.option-item {
+  
+}
+
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+}

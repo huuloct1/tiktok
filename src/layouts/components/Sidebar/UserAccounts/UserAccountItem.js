@@ -30,7 +30,11 @@ const UserAccountItem = ({ data }) => {
         placement='bottom-start'
         render={renderReview}
       >
-        <Link to={`/@${data.nickname}`} className={cx('account-item')}>
+        <Link
+          state={data.nickname}
+          to={`/profile/@${data.nickname}`}
+          className={cx('account-item')}
+        >
           <Image src={data.avatar} />
           <div className={cx('account-info')}>
             <span className={cx('account-name')}>

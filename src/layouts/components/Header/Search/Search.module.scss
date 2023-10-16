@@ -1,0 +1,115 @@
+.search,
+.search-result {
+   width: 361px;
+}
+
+.search {
+   position: relative;
+   height: var(--search-height);
+   background-color: rgba(22,24,35,0.06);
+   border-radius: var(--search-border-radius);
+   padding-left: 16px;
+   display: flex;
+   border: 1.5px solid transparent;
+
+   input {
+      flex: 1;
+      height: 100%;
+      padding-right: 40px;
+      color: var(--black);
+      font-family: var(--font-family);
+      font-size: 1.6rem;
+      background-color: transparent;
+      caret-color: var(--primary);
+   }
+
+   &::after {
+      content: '';
+      position: absolute;
+      top: calc(var(--search-height) / 5);
+      right: 52px;
+      width: 1px;
+      height: calc(var(--search-height) * (1 - 2 / 5));
+      background-color: rgba(22,24,35,0.12);
+   }
+
+   &:focus-within {
+      border-color: rgba(22,24,35,0.2);
+   }
+
+   // &:hover {
+   //    border-color: rgba(22,24,35,0.2);
+   // }
+   &:hover ~ .search-btn {
+      background-color: rgba(22,24,35,0.3);
+   }
+}
+
+.search-result {
+   color: var(--text-color);
+}
+
+.clear-btn,
+.loading {
+   position: absolute;
+   right: 52px;
+   top: 50%;
+   color: rgba(22,24,35,0.34);
+   margin-right: 14px;
+   transform: translateY(-50%);
+}
+
+.loading {
+   animation: spinner 0.7s linear infinite;
+}
+
+@keyframes spinner {
+   from {
+      transform: translateY(-50%) rotate(0);
+
+   }
+   to {
+      transform: translateY(-50%) rotate(360deg);
+   }
+}
+
+.search-btn {
+  width: 52px;
+  height: 100%;
+  border-top-right-radius: var(--search-border-radius);
+  border-bottom-right-radius: var(--search-border-radius);
+  font-size: 1.8rem;
+  color: var(--gray);
+
+  &:hover {
+     background-color: rgba(22,24,35,0.03);
+     cursor: pointer;
+     // border: solid 0.5px #828282;
+  }
+}
+
+.search-result-video {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-result-video-item {
+  padding: 8px;
+  
+  svg {
+     margin-right: 12px;
+  }
+}
+
+.search-result-account-title {
+  color: gray
+}
+
+.search-result-account {
+
+}
+
+.search-result-account-item {
+  display: flex;
+  flex-direction: column;
+}

@@ -28,9 +28,23 @@
   margin: 0 auto;
   border-radius: 8px;
   margin-bottom: 16px;
+  cursor: pointer;
 
+  &:hover {
+    animation: scale 0.3s ease-in-out forwards;
+  }
+  
   .icon {
     padding-right: 8px;
+  }
+}
+
+@keyframes scale {
+  from {
+    font-size: 1.6rem;
+  }
+  to{
+    font-size: 1.8rem;
   }
 }
 

@@ -10,7 +10,7 @@ import { useState } from 'react'
 
 const cx = classNames.bind(styles)
 
-const Menu = ({ children, list = [] }) => {
+const Menu = ({ children, list = [], delay = [0, 0] }) => {
   const [historyMenu, setHistoryMenu] = useState([{ data: list }])
   const currentMenu = historyMenu[historyMenu.length - 1]
 
@@ -61,7 +61,7 @@ const Menu = ({ children, list = [] }) => {
       <HeadlessTippy
         hideOnClick={false}
         interactive
-        delay={[0, 500]}
+        delay={delay}
         offset={[12, 8]}
         placement='bottom-end'
         render={renderResult}
