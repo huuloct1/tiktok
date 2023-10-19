@@ -106,6 +106,7 @@ const ACTION_MORE_LIST = [
 //Input data is element of Suggested List
 const User = ({ data }) => {
   const [userData, setUserData] = useState({})
+  const [isOptionActive, setIsOptionActive] = useState(1)
 
   //Fetch data of User Profile
   useEffect(() => {
@@ -117,8 +118,38 @@ const User = ({ data }) => {
     fetchApi()
   }, [data])
 
-  console.log(userData)
+  const optionItemList = Array.prototype.slice.call(
+    document.getElementsByClassName('User_option-item__UL+pT')
+  )
+  const optionItemActive = Array.prototype.slice.call(
+    document.getElementsByClassName(cx('active'))
+  )[0]
+  const slide = Array.prototype.slice.call(
+    document.getElementsByClassName(cx('option-slide-item'))
+  )[0]
 
+  if (slide) {
+    slide.style.left = optionItemActive.offsetLeft - 227 + 'px'
+    slide.style.width = optionItemActive.offsetWidth + 'px'
+  }
+
+  optionItemList.forEach((item, index) => {
+    item.onclick = function () {
+      //Reset active
+      const optionItemActive = Array.prototype.slice.call(
+        document.getElementsByClassName(cx('active'))
+      )[0]
+      optionItemActive.classList.remove(cx('active'))
+
+      if (slide) {
+        slide.style.left = this.offsetLeft - 227 + 'px'
+        slide.style.width = this.offsetWidth + 'px'
+      }
+
+      //Add active
+      this.classList.add(cx('active'))
+    }
+  })
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
@@ -179,11 +210,14 @@ const User = ({ data }) => {
 
       <div className={cx('container')}>
         <div className={cx('option')}>
-          <span className={cx('option-item')}>Videos</span>
+          <span className={cx('option-item', 'active')}>Videos</span>
           <span className={cx('option-item')}>
             <FontAwesomeIcon icon={faLock} />
             Liked
           </span>
+          <div className={cx('option-slide')}>
+            <div className={cx('option-slide-item')}></div>
+          </div>
         </div>
         <div className={cx('videos')}>
           {userData.videos?.map((item) => (

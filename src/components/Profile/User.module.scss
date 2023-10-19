@@ -110,11 +110,35 @@
 }
 
 .option {
-
+  color: var(--gray);
+  font-weight: 600;
+  padding-bottom: 6px;
 }
 
 .option-item {
-  
+  display: inline-block;
+  width: 120px;
+  text-align: center;
+  padding: 4px;
+  cursor: pointer;
+
+  &:is(.active) {
+    color: var(--text-color);
+  }
+}
+
+.option-slide {
+  display: flex;
+  position: relative;
+}
+
+.option-slide-item {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background-color: var(--black);
 }
 
 .videos {
